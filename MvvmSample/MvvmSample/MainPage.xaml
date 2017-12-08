@@ -1,13 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:MvvmSample"
+             xmlns:viewModels="clr-namespace:MvvmSample.ViewModels;"
              x:Class="MvvmSample.MainPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+
+
+
+    <!--ViewModelのクラスを指定-->
+    <ContentPage.BindingContext>
+        <viewModels:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <!--レイアウト-->
+    <!-- CommandプロパティではICommand型のプロパティ名を指定してやる必要がある -->
+    <!--今回の例で言うと、CountUpCommandをバインディングしている-->
+    <!--これはボタンクリック時にMainViewModel.csのCountUpCommandを実行するように命令している-->
+    <StackLayout HorizontalOptions="Center"
+                 VerticalOptions="Center">
+        <Button Text="カウントアップ"
+                Command="{Binding CountUpCommand}"/>
+        <Label x:Name="lblCountUp"
+               Text="{Binding CurrentNumber}"
+               HorizontalTextAlignment="Center"/>
+        <Button Text="-"
+                Command="{Binding CountDownCommand}"/>
+    </StackLayout>
+
+
+
+
+
 </ContentPage>
