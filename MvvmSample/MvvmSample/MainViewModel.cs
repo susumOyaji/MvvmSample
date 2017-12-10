@@ -21,7 +21,7 @@ namespace MvvmSample.ViewModels
        
 
         public ICommand CountUpCommand { get; }
-       // public ICommand CountDownCommand { get; }
+        public ICommand CountDownCommand { get; }
 
         public int CurrentNumber
         {
@@ -39,7 +39,7 @@ namespace MvvmSample.ViewModels
         public MainViewModel()
         {
             CountUpCommand = new CountUpCommand(Increment);
-            //CountUpCommand = new CountUpCommand(Decrement);
+            CountDownCommand = new CountUpCommand(Decrement);
         }
 
         #endregion
